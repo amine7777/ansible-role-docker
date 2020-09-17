@@ -48,6 +48,10 @@
       package:
         name: "{{ docker_package_name }}"
         state: latest
+      with_items:
+        - containerd.io
+        - "{{ docker_package_name }}"
+        - "{{ docker_package_name }}-cli"
   when: ansible_os_family == "RedHat"
 
 - name: Install docker compose with pip
