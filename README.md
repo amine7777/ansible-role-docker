@@ -1,7 +1,7 @@
 Ansible role: Docker
 =========
 
-This role helps you to install docker on your linux machine.
+This role helps you to install docker and docker-compose on your linux machine.
 
 
 |Travis|CircleCI|GitHub|Quality|Downloads|Version|
@@ -19,19 +19,23 @@ Role Variables
 --------------
 These variables helps to manage docker installation.
 
-You can specify your docker version in this variable.
+
 ```yaml
-docker_version: 0.13.1
-docker_arch: amd64
-docker_directory_path: /usr/local/bin
+docker_package_name: docker-ce
+
+#DOCKER_DEBIAN
+docker_apt_gpgkey: https://download.docker.com/linux/ubuntu/gpg
+docker_apt_repo:  deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+
+#DOCKER_REDHAT
+docker_yum_repo_url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/{{ docker_package_name }}.repo
+docker_yum_repo_path: /etc/yum.repos.d/{{ docker_package_name }}.repo
 ```
-This is the url where docker will be downloaded.
+We can enable or not the installation of docker-compose.
+We can alson choose the the version of docker-compose that we would like to install.
 ```ỳaml
-docker_download_url: 'https://releases.hashicorp.com/docker/{{ docker_version }}/docker_{{ docker_version }}_linux_{{ docker_arch }}.zip'
-```
-This is the path where packer binary will be stored.
-```yaml
-docker_directory_path: /usr/local/bin
+install_docker_compose: true
+docker_compose_version: 1.27.3
 ```
 
 Example Playbook
@@ -39,6 +43,9 @@ Example Playbook
 
 ```yaml
 - hosts: all
+  vars:
+    install_docker_compose: true
+    docker_compose_version: 1.27.3
   roles:
      - amine7777.docker
 ```
