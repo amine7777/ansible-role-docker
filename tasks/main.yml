@@ -35,15 +35,6 @@
         url: "{{ docker_yum_repo_url }}"
         dest: "{{ docker_yum_repo_path }}"
 
-    - name: Install dependencies for Fedora
-      yum:
-        name: '{{ item }}'
-        state: present
-      with_items:
-        - dnf
-        - dnf-plugins-core
-      when: ansible_distribution == "Fedora"
-
     - name: Install Docker
       package:
         name: "{{ docker_package_name }}"
@@ -54,6 +45,17 @@
         - "{{ docker_package_name }}-cli"
   when: ansible_os_family == "RedHat"
 
+#---------FEDORA--------------------
+- name: Install dependencies for Fedora
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - dnf
+    - dnf-plugins-core
+  when: ansible_distribution == "Fedora"
+
+#---------DOCKER-COMPOSE---------------
 - name: Install docker compose with pip
   block:
     - name: Install python3 and python3-pip
