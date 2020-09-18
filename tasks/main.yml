@@ -36,7 +36,7 @@
         dest: "{{ docker_yum_repo_path }}"
 
     - name: Install Docker
-      package:
+      yum:
         name: "{{ docker_package_name }}"
         state: latest
       with_items:
