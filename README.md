@@ -25,7 +25,7 @@ docker_package_name: docker-ce
 
 #DOCKER_DEBIAN
 docker_apt_gpgkey: https://download.docker.com/linux/ubuntu/gpg
-docker_apt_repo:  deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+docker_apt_repo:  deb [arch=amd64] https://download.docker.com/linux/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
 
 #DOCKER_REDHAT
 docker_yum_repo_url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/{{ docker_package_name }}.repo
