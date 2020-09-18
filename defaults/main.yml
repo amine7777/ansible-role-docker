@@ -11,3 +11,4 @@ docker_apt_repo:  deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ a
 #DOCKER_REDHAT
 docker_yum_repo_url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/{{ docker_package_name }}.repo
 docker_yum_repo_path: /etc/yum.repos.d/{{ docker_package_name }}.repo
+containerd_package: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm

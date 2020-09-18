@@ -49,7 +49,7 @@
         name: "{{ docker_package_name }}"
         state: latest
       with_items:
-        - containerd.io
+        - "{{ containerd_package }}"
         - "{{ docker_package_name }}"
         - "{{ docker_package_name }}-cli"
   when: ansible_os_family == "RedHat"
