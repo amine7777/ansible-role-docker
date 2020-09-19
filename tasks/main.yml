@@ -39,7 +39,7 @@
         name: "{{ docker_package_name }}"
         state: latest
       with_items:
-        - "{{ containerd_package }}"
+        #- "{{ containerd_package }}"
         - "{{ docker_package_name }}"
         - "{{ docker_package_name }}-cli"
   when: ansible_os_family == "RedHat"
@@ -57,12 +57,26 @@
 #---------DOCKER-COMPOSE---------------
 - name: Install docker compose with pip
   block:
-    - name: Install python3 dependencies
+    - name: Install python3
       package:
         name: '{{ item }}'
         state: latest
       with_items:
-        - '{{ python3_dependencies }}'
+        - python3
+        - python3-pip
+
+    - name: Install python3 dependencies
+      package:
+        name: '{{ item }}'
+        state: latest
+      when: ansible_distribution == 'ubuntu'
+      with_items:
+        - python3-dev
+        - build-essential
+        - libssl-dev
+        - libffi-dev
+        - libxml2-dev
+        - libxslt1-dev
 
     - name: Install docker compose with pip
       command: pip3 install docker-compose=={{ docker_compose_version }}
