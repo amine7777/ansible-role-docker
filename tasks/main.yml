@@ -34,12 +34,15 @@
         url: "{{ docker_yum_repo_url }}"
         dest: "{{ docker_yum_repo_path }}"
 
+    - name: install containerd
+      command: yum install -y "{{ containerd_package }}"
+      changed_when: false
+
     - name: Install Docker
       yum:
         name: "{{ docker_package_name }}"
         state: latest
       with_items:
-        - "{{ containerd_package }}"
         - "{{ docker_package_name }}"
         - "{{ docker_package_name }}-cli"
   when: ansible_os_family == "RedHat"
@@ -65,7 +68,7 @@
         - python3
         - python3-pip
 
-    - name: Install python3 dependencies
+    - name: Install python3 dependencies for ubuntu
       package:
         name: '{{ item }}'
         state: latest
