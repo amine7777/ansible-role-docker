@@ -73,7 +73,6 @@
       package:
         name: '{{ item }}'
         state: latest
-
       when: ansible_distribution == 'Ubuntu'
       with_items:
         - python3-dev
@@ -84,9 +83,11 @@
         - libxml2-dev
         - libxslt1-dev
 
-    - command: pip3 install --upgrade pip
+    - name: Upgrade pip3
+      command: pip3 install --upgrade pip
+      changed_when: false
 
-    - name: Upgrade pip and install docker compose
+    - name: Install docker compose
       pip:
         name: docker-compose=={{ docker_compose_version }}
         executable: pip3
