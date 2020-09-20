@@ -13,10 +13,11 @@ jobs:
     strategy:
       matrix:
         distro:
+          - centos8
           - debian10
           - ubuntu2004
           - ubuntu1804
-          #- ubuntu1604
+          - ubuntu1604
           - fedora32
 
     steps:
