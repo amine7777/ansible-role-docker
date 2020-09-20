@@ -1,7 +1,9 @@
 ---
+#-------UPDATE DISTRIBUTIONS-----------------
 - name: Update OS
   include_tasks: update_os.yml
 
+#DEBIAN
 - name: Install docker on Debian OS Family
   block:
     - name: Install prerequisites
@@ -27,6 +29,7 @@
         name: "{{ docker_package_name }}"
   when: ansible_os_family == "Debian"
 
+#REDHAT
 - name: Install docker on Redhat OS Family
   block:
     - name: Add Docker repo
@@ -47,7 +50,7 @@
         - "{{ docker_package_name }}-cli"
   when: ansible_os_family == "RedHat"
 
-#---------FEDORA--------------------
+#FEDORA
 - name: Install dependencies for Fedora
   yum:
     name: '{{ item }}'
@@ -64,15 +67,15 @@
     - name: Install python3
       package:
         name: '{{ item }}'
-        state: latest
+        state: present
       with_items:
         - python3
         - python3-pip
 
     - name: Install python3 dependencies for ubuntu
-      package:
+      apt:
         name: '{{ item }}'
-        state: latest
+        state: present
       when: ansible_distribution == 'Ubuntu'
       with_items:
         - python3-dev
