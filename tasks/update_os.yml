@@ -6,6 +6,11 @@
     cache_valid_time: 3600
   when: ansible_os_family == 'Debian'
 
+- name: Clean all for RedHat dist
+  command: yum clean all
+  changed_when: false
+  when: ansible_os_family == 'RedHat'
+
 - name: Update RedHat
   package:
     name: '*'
@@ -13,6 +18,7 @@
   when:
     - not ansible_distribution == 'Fedora'
     - ansible_os_family == 'RedHat'
+  changed_when: false
 
 - name: install dnf-automatic
   dnf:
