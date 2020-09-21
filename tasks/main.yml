@@ -5,34 +5,34 @@
 
 
 #DEBIAN
-# - name: Install docker on Debian OS Family
-#   block:
-#     - name: Install prerequisites
-#       apt:
-#         name: "{{ item }}"
-#         update_cache: yes
-#       changed_when: false
-#       with_items:
-#         - apt-transport-https
-#         - ca-certificates
-#         - software-properties-common
-#         - gnupg2
-#
-#     - name: Add Docker GPG key
-#       apt_key:
-#         url: "{{ docker_apt_gpgkey }}"
-#       changed_when: false
-#
-#     - name: Add Docker APT repository
-#       apt_repository:
-#         repo: "{{ docker_apt_repo }}"
-#       changed_when: false
-#
-#     - name: Install Docker
-#       apt:
-#         name: "{{ docker_package_name }}"
-#       changed_when: false
-#   when: ansible_os_family == "Debian"
+- name: Install docker on Debian OS Family
+  block:
+    - name: Install prerequisites
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      changed_when: false
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+        - software-properties-common
+        - gnupg2
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: "{{ docker_apt_gpgkey }}"
+      changed_when: false
+
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: "{{ docker_apt_repo }}"
+      changed_when: false
+
+    - name: Install Docker
+      apt:
+        name: "{{ docker_package_name }}"
+      changed_when: false
+  when: ansible_os_family == "Debian"
 
 #REDHAT
 - name: Install docker on Redhat OS Family
@@ -60,50 +60,50 @@
   when: ansible_os_family == "RedHat"
 
 #FEDORA
-# - name: Install dependencies for Fedora
-#   yum:
-#     name: '{{ item }}'
-#     state: present
-#   with_items:
-#     - dnf
-#     - dnf-plugins-core
-#   when: ansible_distribution == "Fedora"
+- name: Install dependencies for Fedora
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - dnf
+    - dnf-plugins-core
+  when: ansible_distribution == "Fedora"
 
 
 #---------DOCKER-COMPOSE---------------
-# - name: Install docker compose with pip
-#   block:
-#     - name: Install python3
-#       package:
-#         name: '{{ item }}'
-#         state: present
-#       changed_when: false
-#       with_items:
-#         - python3
-#         - python3-pip
+- name: Install docker compose with pip
+  block:
+    - name: Install python3
+      package:
+        name: '{{ item }}'
+        state: present
+      changed_when: false
+      with_items:
+        - python3
+        - python3-pip
 
-    # - name: Install python3 dependencies for ubuntu
-    #   apt:
-    #     name: '{{ item }}'
-    #     state: present
-    #   changed_when: false
-    #   when: ansible_distribution == 'Ubuntu'
-    #   with_items:
-    #     - python3-dev
-    #     - build-essential
-    #     - libssl-dev
-    #     - libffi-dev
-    #     - zlib1g-dev
-    #     - libxml2-dev
-    #     - libxslt1-dev
+    - name: Install python3 dependencies for ubuntu
+      apt:
+        name: '{{ item }}'
+        state: present
+      changed_when: false
+      when: ansible_distribution == 'Ubuntu'
+      with_items:
+        - python3-dev
+        - build-essential
+        - libssl-dev
+        - libffi-dev
+        - zlib1g-dev
+        - libxml2-dev
+        - libxslt1-dev
 
-  #   - name: Upgrade pip3
-  #     command: pip3 install --upgrade pip
-  #     changed_when: false
-  #
-  #   - name: Install docker compose
-  #     pip:
-  #       name: docker-compose=={{ docker_compose_version }}
-  #       executable: pip3
-  #     changed_when: false
-  # when: install_docker_compose == true
+    - name: Upgrade pip3
+      command: pip3 install --upgrade pip
+      changed_when: false
+
+    - name: Install docker compose
+      pip:
+        name: docker-compose=={{ docker_compose_version }}
+        executable: pip3
+      changed_when: false
+  when: install_docker_compose == true
