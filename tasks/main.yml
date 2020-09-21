@@ -35,13 +35,13 @@
 #   when: ansible_os_family == "Debian"
 
 #REDHAT
-# - name: Install docker on Redhat OS Family
-#   block:
-#     - name: Add Docker repo
-#       get_url:
-#         url: "{{ docker_yum_repo_url }}"
-#         dest: "{{ docker_yum_repo_path }}"
-#       changed_when: false
+- name: Install docker on Redhat OS Family
+  block:
+    - name: Add Docker repo
+      get_url:
+        url: "{{ docker_yum_repo_url }}"
+        dest: "{{ docker_yum_repo_path }}"
+      changed_when: false
 #
 #     - name: Edit containerd package name
 #       set_fact:
