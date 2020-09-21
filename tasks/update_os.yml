@@ -5,7 +5,7 @@
     update_cache: true
     cache_valid_time: 3600
   when: ansible_os_family == 'Debian'
-  changed_when: false
+
 
 - name: Clean all for RedHat dist
   command: yum clean all
@@ -29,4 +29,3 @@
   retries: 20
   delay: 0
   when: ansible_distribution == 'Fedora'
-  changed_when: false
