@@ -39,14 +39,14 @@
   block:
     - name: Add Docker repo
       get_url:
-        url: "{{ docker_yum_repo_url }}"
-        dest: "{{ docker_yum_repo_path }}"
+        url: "{{ docker_el_repo_url }}"
+        dest: "{{ docker_el_repo_path }}"
       changed_when: false
 
     - name: Install Docker
       yum:
         name: "{{ docker_package_name }}"
-        state: latest
+        state: present
       changed_when: false
       with_items:
         - "{{ docker_package_name }}"
@@ -66,14 +66,14 @@
 
     - name: Add Docker repo
       get_url:
-        url: "{{ docker_yum_repo_url }}"
-        dest: "{{ docker_yum_repo_path }}"
+        url: "{{ docker_el_repo_url }}"
+        dest: "{{ docker_el_repo_path }}"
       changed_when: false
 
     - name: Install Docker
       yum:
         name: "{{ docker_package_name }}"
-        state: latest
+        state: present
       changed_when: false
       with_items:
         - "{{ docker_package_name }}"
@@ -117,4 +117,4 @@
         name: docker-compose=={{ docker_compose_version }}
         executable: pip3
       changed_when: false
-  when: install_docker_compose == true
+  when: install_docker_compose
