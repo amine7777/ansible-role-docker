@@ -74,16 +74,16 @@
 
 
 #---------DOCKER-COMPOSE---------------
-- name: Install docker compose with pip
-  block:
-    - name: Install python3
-      package:
-        name: '{{ item }}'
-        state: present
-      changed_when: false
-      with_items:
-        - python3
-        - python3-pip
+# - name: Install docker compose with pip
+#   block:
+#     - name: Install python3
+#       package:
+#         name: '{{ item }}'
+#         state: present
+#       changed_when: false
+#       with_items:
+#         - python3
+#         - python3-pip
 
     # - name: Install python3 dependencies for ubuntu
     #   apt:
@@ -100,13 +100,13 @@
     #     - libxml2-dev
     #     - libxslt1-dev
 
-    - name: Upgrade pip3
-      command: pip3 install --upgrade pip
-      changed_when: false
-
-    - name: Install docker compose
-      pip:
-        name: docker-compose=={{ docker_compose_version }}
-        executable: pip3
-      changed_when: false
-  when: install_docker_compose == true
+  #   - name: Upgrade pip3
+  #     command: pip3 install --upgrade pip
+  #     changed_when: false
+  #
+  #   - name: Install docker compose
+  #     pip:
+  #       name: docker-compose=={{ docker_compose_version }}
+  #       executable: pip3
+  #     changed_when: false
+  # when: install_docker_compose == true
