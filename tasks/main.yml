@@ -2,6 +2,7 @@
 #-------UPDATE DISTRIBUTIONS-----------------
 - name: Update OS
   include_tasks: update_os.yml
+  changed_when: false
 
 #DEBIAN
 - name: Install docker on Debian OS Family
@@ -10,6 +11,7 @@
       apt:
         name: "{{ item }}"
         update_cache: yes
+      changed_when: false
       with_items:
         - apt-transport-https
         - ca-certificates
@@ -19,14 +21,18 @@
     - name: Add Docker GPG key
       apt_key:
         url: "{{ docker_apt_gpgkey }}"
+      changed_when: false
 
     - name: Add Docker APT repository
       apt_repository:
         repo: "{{ docker_apt_repo }}"
+      changed_when: false
+
 
     - name: Install Docker
       apt:
         name: "{{ docker_package_name }}"
+      changed_when: false
   when: ansible_os_family == "Debian"
 
 #REDHAT
@@ -42,6 +48,7 @@
       set_fact:
         containerd_package_name: containerd.io-1.3.7-3.1.fc{{ ansible_distribution_major_version }}.x86_64.rpm
       when: ansible_distribution == 'Fedora'
+      changed_when: false
 
     - name: install containerd
       command: yum install -y "{{ containerd_package }}"
