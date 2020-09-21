@@ -11,8 +11,8 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - centos8
-        - centos7
+        - 8
+        - 7
     - name: Fedora
       versions:
         - all
@@ -26,4 +26,4 @@ galaxy_info:
     - system
     - image
     - docker
-    - packer
+    - container
