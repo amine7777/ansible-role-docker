@@ -21,7 +21,6 @@ These variables helps to manage docker installation.
 
 
 ```yaml
-#DOCKER
 docker_package_name: docker-ce
 
 #DOCKER_DEBIAN
@@ -31,7 +30,6 @@ docker_apt_repo:  deb [arch=amd64] https://download.docker.com/linux/{{ ansible_
 #DOCKER_REDHAT
 docker_yum_repo_url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/{{ docker_package_name }}.repo
 docker_yum_repo_path: /etc/yum.repos.d/{{ docker_package_name }}.repo
-containerd_package: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
 ```
 We can enable or not the installation of docker-compose.
 We can also choose the version of docker-compose that we would like to install.
