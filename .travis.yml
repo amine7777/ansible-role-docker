@@ -16,7 +16,7 @@ install:
   - pip3 install molecule yamllint ansible-lint
 
 script:
-  - molecule test
+  - molecule --debug test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notification
