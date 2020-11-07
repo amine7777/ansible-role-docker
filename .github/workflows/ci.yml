@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         distro:
+          - centos7
           - centos8
           - debian10
           - ubuntu2004
@@ -30,7 +31,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install molecule docker yamllint ansible-lint
+        run: pip3 install molecule[docker] docker yamllint ansible-lint
 
       - name: display folder
         run: ls -la
