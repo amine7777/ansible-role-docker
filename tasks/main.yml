@@ -30,8 +30,12 @@
 
     - name: Install Docker
       apt:
-        name: "{{ docker_package_name }}"
+        name: "{{ item }}"
       changed_when: false
+      with_items:
+        - "{{ docker_package_name }}"
+        - "{{ docker_package_name }}-cli"
+        - containerd.io
   when: ansible_os_family == "Debian"
 
 #REDHAT
@@ -45,12 +49,13 @@
 
     - name: Install Docker
       yum:
-        name: "{{ docker_package_name }}"
+        name: "{{ item }}"
         state: present
       changed_when: false
       with_items:
         - "{{ docker_package_name }}"
         - "{{ docker_package_name }}-cli"
+        - containerd.io
   when: ansible_distribution == "Centos"
 
 #FEDORA
@@ -71,13 +76,14 @@
       changed_when: false
 
     - name: Install Docker
-      yum:
-        name: "{{ docker_package_name }}"
+      dnf:
+        name: "{{ item }}"
         state: present
       changed_when: false
       with_items:
         - "{{ docker_package_name }}"
         - "{{ docker_package_name }}-cli"
+        - containerd.io
   when: ansible_distribution == "Fedora"
 
 
