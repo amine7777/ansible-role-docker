@@ -18,7 +18,6 @@ jobs:
           - debian10
           - ubuntu2004
           - ubuntu1804
-          - ubuntu1604
           - fedora32
 
     steps:
