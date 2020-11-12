@@ -7,8 +7,26 @@ name: CI
       - master
   schedule:
     - cron: "0 7 * * 3"  # minute (0 - 59)-hour (0 - 23)-day of the month (1 - 31)-month (1 - 12)-day of the week (0 - 6)
-jobs:
 
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+    
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint ansible-lint
+
+      - name: Lint code.
+        run: |
+          yamllint .
+          ansible-lint
+               
   test:
     name: Molecule
     runs-on: ubuntu-latest
@@ -25,20 +43,11 @@ jobs:
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v2
+  
+      - name: Molecule test
+        uses: amine7777/molecule-action@v1
         with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install molecule[docker] docker yamllint ansible-lint
-
-      - name: display folder
-        run: ls -la
-
-      - name: Run Molecule tests.
-        run: molecule test
+          command: molecule test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
