@@ -10,4 +10,4 @@
 
     - name: Include ansible-role-docker
       include_role:
-        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+        name: "ansible-role-docker"
