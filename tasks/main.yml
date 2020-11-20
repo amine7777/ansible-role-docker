@@ -3,7 +3,6 @@
 - name: Update OS
   include_tasks: update_os.yml
 
-
 #DEBIAN
 - name: Install docker on Debian OS Family
   block:
