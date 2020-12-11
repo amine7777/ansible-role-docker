@@ -6,7 +6,7 @@ This role helps you to install docker and docker-compose on your linux machine.
 
 |Travis|CircleCI|GitHub|Quality|Downloads|Version|
 |------|--------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/amine7777/ansible-role-docker.svg?branch=master)](https://travis-ci.com/amine7777/ansible-role-docker)|![circleci](https://circleci.com/gh/amine7777/ansible-role-docker.svg?style=svg)|[![github](https://github.com/amine7777/ansible-role-docker/workflows/CI/badge.svg)](https://github.com/amine7777/ansible-role-docker/actions)|[![quality](https://img.shields.io/ansible/quality/50498)](https://galaxy.ansible.com/amine7777/docker)|[![downloads](https://img.shields.io/ansible/role/d/50815)](https://galaxy.ansible.com/amine7777/docker)|[![Version](https://img.shields.io/github/release/amine7777/ansible-role-docker.svg)](https://github.com/amine7777/ansible-role-docker/releases/)|
+|[![travis](https://travis-ci.com/amine7777/ansible-role-docker.svg?branch=master)](https://travis-ci.com/amine7777/ansible-role-docker)|![circleci](https://circleci.com/gh/amine7777/ansible-role-docker.svg?style=svg)|[![github](https://github.com/amine7777/ansible-role-docker/workflows/CI/badge.svg)](https://github.com/amine7777/ansible-role-docker/actions)|[![quality](https://img.shields.io/ansible/quality/52044)](https://galaxy.ansible.com/amine7777/docker)|[![downloads](https://img.shields.io/ansible/role/d/52044)](https://galaxy.ansible.com/amine7777/docker)|[![Version](https://img.shields.io/github/release/amine7777/ansible-role-docker.svg)](https://github.com/amine7777/ansible-role-docker/releases/)|
 
 ![](docker.jpg)
 
